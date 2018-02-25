@@ -3,8 +3,28 @@ package string;
 public class String2 {
     public static void main(String[] args) {
         System.out.println("String2");
-
+        String str = "xyz";
+        System.out.println(1/2);
     }
+
+    /**
+     * Решал около часа, задача была достаточно сложной
+     */
+    public static boolean xyzMiddle(String str) {
+        int in = str.indexOf("xyz", (str.length() - 3) / 2);
+        return in >= 0 && Math.abs(str.substring(0, in).length() - str.substring(in + 3).length()) < 2;
+    }
+
+    private static boolean prefixAgain(String str, int n) {
+        String subStr = "";
+        subStr = str.substring(0,n);
+        for (int i = n; i < str.length()- n + 1; i++){
+            if (subStr.equals(str.substring(i,i + n)))
+                return true;
+        }
+        return false;
+    }
+
 
     public static String repeatSeparator(String word, String sep, int count) {
         StringBuilder sB = new StringBuilder();
