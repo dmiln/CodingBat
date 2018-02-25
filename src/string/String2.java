@@ -3,12 +3,21 @@ package string;
 public class String2 {
     public static void main(String[] args) {
         System.out.println("String2");
-        String str = "xyz";
-        System.out.println(1/2);
     }
 
+    public static String getSandwich(String str) {
+        String bread = "bread";
+        int in = str.indexOf("bread");
+        int out = str.lastIndexOf("bread");
+        if (in == -1 && out == -1)
+            return "";
+        if (in == out)
+            return "";
+        return str.substring(in + 5, out);
+    }
     /**
      * Решал около часа, задача была достаточно сложной
+     * Уверен, что есть другие пути решения
      */
     public static boolean xyzMiddle(String str) {
         int in = str.indexOf("xyz", (str.length() - 3) / 2);
@@ -16,8 +25,8 @@ public class String2 {
     }
 
     private static boolean prefixAgain(String str, int n) {
-        String subStr = "";
-        subStr = str.substring(0,n);
+        //String subStr = " ";
+        String subStr = str.substring(0,n);
         for (int i = n; i < str.length()- n + 1; i++){
             if (subStr.equals(str.substring(i,i + n)))
                 return true;
