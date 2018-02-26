@@ -3,9 +3,47 @@ package string;
 public class String2 {
     public static void main(String[] args) {
         System.out.println("String2");
-        System.out.println(starOut("*a"));
+
     }
 
+    public static String wordEnds(String str, String word){
+        StringBuilder result = new StringBuilder();
+        int length = word.length();
+        if (word.equals(str))
+            return result.toString();
+        for (int i = 0; i < str.length() - length + 1; i++){
+            if (word.equals(str.substring(i, i + length))){
+                if (i == 0){
+                    result.append(str.charAt(i + length));
+                }else {
+                    if (i != str.length() - length){
+                        result.append(str.substring(i - 1, i)).append(str.substring(i + length, i + length + 1));
+                    }else{
+                        result.append(str.substring(i - 1, i));
+                    }
+                }
+            }
+        }
+        return result.toString();
+    }
+
+    public static String plusOut(String str, String word) {
+        int length = word.length();
+        int outWord = str.lastIndexOf(word) + length;
+        for (int i = 0; i < str.length() ; i++){
+            if (i >= outWord){
+                str = str.substring(0, outWord) + "+" + str.substring(outWord + 1);
+                outWord++;
+            }else {
+                if (!str.substring(i, i + length).equals(word)) {
+                    str = str.substring(0, i) + "+" + str.substring(i + 1);
+                } else {
+                    i += length - 1;
+                }
+            }
+        }
+        return str;
+    }
 
     /**
      * Что-то подсказывает, что эту функцию можно было сделать иначе
