@@ -3,6 +3,84 @@ package string;
 public class String2 {
     public static void main(String[] args) {
         System.out.println("String2");
+        System.out.println(starOut("*a"));
+    }
+
+
+    /**
+     * Что-то подсказывает, что эту функцию можно было сделать иначе
+     * Нужно было убрать все символы окружающие * ( * может быть больше чем одна)
+     */
+    public static String starOut(String str) {
+
+        if (str.indexOf('*') == -1)
+            return str;
+
+        if (str.length() < 2) {
+            if (str.equals("*"))
+                return "";
+            else
+                return str;
+        }else{
+            while(str.indexOf('*') == 0 || str.lastIndexOf('*') == str.length() - 1) {
+                if (str.lastIndexOf('*') == str.length() - 1) {
+                    if (str.charAt(str.lastIndexOf('*') - 1) == '*') {
+                        str = str.substring(0, str.lastIndexOf('*'));
+                    }else{
+                        str = str.substring(0, str.lastIndexOf('*') - 1);
+                    }
+                }
+                if (str.indexOf('*') == 0) {
+                    if (str.charAt(str.indexOf('*') + 1) == '*'){
+                        str = str.substring(1);
+                    }else{
+                        str = str.substring(2);
+                    }
+                }
+                if (str.length() == 0)
+                    return str;
+            }
+        }
+
+        while(str.indexOf('*') != -1){
+            if (str.charAt(str.indexOf('*') + 1) != '*'){
+                str = str.substring(0, str.indexOf('*') - 1) + str.substring(str.indexOf('*') + 2);
+            }else{
+                str = str.substring(0, str.indexOf('*')) + str.substring(str.indexOf('*') + 1);
+            }
+        }
+
+        return str;
+    }
+
+    public static String zipZap(String str) {
+        for (int i = 0; i < str.length() - 2; i++){
+            if (str.charAt(i) == 'z' && str.charAt(i + 2) == 'p') {
+                str = str.substring(0,i + 1) + str.substring(i + 2);
+            }
+        }
+        return str;
+    }
+
+    public static String oneTwo(String str) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < str.length() - 2; i+=3){
+            String newStr = str.substring(i, i + 3);
+            newStr = newStr.substring(1) + newStr.substring(0, 1);
+            result.append(newStr);
+        }
+        return result.toString();
+    }
+
+
+    public static boolean sameStarChar(String str) {
+        for (int i = 1; i < str.length() - 1; i++){
+            if (str.charAt(i) == '*'){
+                if (str.charAt(i - 1) != str.charAt(i + 1))
+                    return false;
+            }
+        }
+        return true;
     }
 
     public static String getSandwich(String str) {
