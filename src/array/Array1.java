@@ -1,9 +1,44 @@
 package array;
 
+
 public class Array1 {
 
     public static void main(String[] args) {
+        int[] a = {12, 2, 3, 4, 5, 6, 7, 8};
+    }
 
+    public static int sum2(int[] nums) {
+        int result = 0;
+        if (nums.length > 1){
+            result = nums[0] + nums[1];
+        }
+        if (nums.length == 1){
+            result = nums[0];
+        }
+        return result;
+    }
+
+    /**
+     * Заполняет массив максимальным крайним числом
+     */
+    public static int[] maxEnd3(int[] nums) {
+        int max = Math.max(nums[0],nums[nums.length - 1]);
+        int[] result = new int[nums.length];
+        for (int i = 0; i < result.length; i++){
+            result[i] = max;
+        }
+        return result;
+    }
+
+    /**
+     * Переворачивает массив
+     */
+    public static int[] reverse3(int[] nums) {
+        int[] result = new int[nums.length];
+        for (int i = nums.length - 1, j = 0; i >= 0 && j < nums.length; i--, j++ ){
+            result[j] = nums[i];
+        }
+        return result;
     }
 
     public static int[] rotateLeft3(int[] nums) {
@@ -32,7 +67,7 @@ public class Array1 {
         return nums.length > 0 && nums[0] == nums[nums.length - 1];
     }
 
-    int[] makePi(){
+    static int[] makePi(){
         return new int[]{3, 1, 4};
     }
 }
