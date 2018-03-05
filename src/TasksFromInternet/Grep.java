@@ -3,13 +3,32 @@ package TasksFromInternet;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Grep {
+
 
     public static void main(String[] args) {
         String path = "./src/TasksFromInternet/files/readMe.txt";
         //displayByWord(path);
-        displayByFewWords(path);
+        //displayByFewWords(path);
+
+
+        Pattern p = Pattern.compile("[Тт]а[ий]ланд");
+        Matcher m = p.matcher("Мне очень нравится Тайланд. Таиланд это то место куда бы я поехал. тайланд - мечты сбываются!");
+        System.out.println();
+        String s = "Мне очень нравится Тайланд. Таиланд это то место куда бы я поехал. тайланд - мечты сбываются!";
+        System.out.println(s.replaceAll("[Тт]а[ий]ланд", "Россия"));
+
+
+        Pattern pattern;
+        Matcher matcher;
+        String s2 = "Мне очень нравится Тайланд. Таиланд это то место куда бы я поехал. тайланд - мечты сбываются!";
+        pattern = Pattern.compile("[Тт]а[ий]ланд");
+        matcher = pattern.matcher(s2);
+
+        System.out.println("Есть совпадение?: " + matcher.find());
     }
 
     private static void displayByWord(String fileName)  {
