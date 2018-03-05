@@ -1,20 +1,19 @@
 package TasksFromInternet;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Grep {
 
     public static void main(String[] args) {
-        displayByWord();
+        String path = "./src/TasksFromInternet/files/readMe.txt";
+        //displayByWord();
+        displayByFewWords(path);
     }
 
     private static void displayByWord()  {
         Scanner scanner = new Scanner(System.in);
-        StringBuilder sb = new StringBuilder();
         System.out.print("Введите слово по которому будем выполнять поиск строк: ");
         String inpStr = scanner.next();
         if (inpStr != null){
@@ -22,7 +21,7 @@ public class Grep {
             try {
                 in = new Scanner(new FileReader("./src/TasksFromInternet/files/readMe.txt"));
             } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                System.err.println("Не удалось найти файл");
             }
             if (in != null) {
                 System.out.println("Всё, что нам удалось найти по запросу " + inpStr + ":");
@@ -36,5 +35,38 @@ public class Grep {
         }
     }
 
+    private static void displayByFewWords(String fileName) {
+        Scanner scanner = new Scanner(System.in);
+        StringBuilder stringBuilder = new StringBuilder();
+        System.out.println("Введите набор слов по которым осуществлять поиск: ");
+        String inpStr = scanner.nextLine();
+        String[] rightWords = inpStr.split(" +");
+
+        Scanner in = null;
+        try {
+            in = new Scanner(new FileReader(fileName));
+        } catch (FileNotFoundException e) {
+            System.err.println("Не удалось найти файл");
+        }
+
+        if (in != null){
+            System.out.println("Все что нашлось по запросу - " + inpStr + ": ");
+            while (in.hasNextLine()){
+                String s = in.nextLine();
+                for (String searchWord: rightWords){
+                    if (s.toLowerCase().contains(searchWord.toLowerCase())){
+                        stringBuilder.append(s).append("\n");
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (stringBuilder.length() != 0){
+            System.out.println(stringBuilder.toString());
+        }else{
+            System.out.println("К сожаление в тексте не встречалось слов:" + inpStr);
+        }
+    }
 
 }
