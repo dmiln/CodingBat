@@ -8,18 +8,18 @@ public class Grep {
 
     public static void main(String[] args) {
         String path = "./src/TasksFromInternet/files/readMe.txt";
-        //displayByWord();
+        //displayByWord(path);
         displayByFewWords(path);
     }
 
-    private static void displayByWord()  {
+    private static void displayByWord(String fileName)  {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите слово по которому будем выполнять поиск строк: ");
         String inpStr = scanner.next();
         if (inpStr != null){
             Scanner in = null;
             try {
-                in = new Scanner(new FileReader("./src/TasksFromInternet/files/readMe.txt"));
+                in = new Scanner(new FileReader(fileName));
             } catch (FileNotFoundException e) {
                 System.err.println("Не удалось найти файл");
             }
