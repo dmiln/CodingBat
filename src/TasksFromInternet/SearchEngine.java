@@ -27,7 +27,6 @@ public class SearchEngine {
                 System.err.println("Не удалось найти файл");
             }
             if (file != null) {
-                System.out.println("Всё, что нам удалось найти по запросу " + inpStr + ":");
                 while (file.hasNextLine()) {
                     String s = file.nextLine();
                     matcher = pattern.matcher(s);
@@ -56,7 +55,6 @@ public class SearchEngine {
         }
 
         if (file != null) {
-            System.out.println("Все что нашлось по запросу - " + inpStr + ": ");
             while (file.hasNextLine()) {
                 String s = file.nextLine();
                 for (String searchWord : rightWords) {
@@ -85,7 +83,6 @@ public class SearchEngine {
                 System.err.println("Не удалось найти файл");
             }
             if (file != null) {
-                System.out.println("Всё, что нам удалось найти по запросу " + inpStr + ":");
                 while (file.hasNextLine()) {
                     String s = file.nextLine();
                     if (s.toLowerCase().contains(inpStr.toLowerCase())) {
