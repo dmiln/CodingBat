@@ -13,7 +13,7 @@ public class Grep {
         String path = "./src/TasksFromInternet/files/readMe.txt";
         //displayByWord(path);
         //displayByFewWords(path);
-
+        displayByRegex(path);
 
         Pattern p = Pattern.compile("[Тт]а[ий]ланд");
         Matcher m = p.matcher("Мне очень нравится Тайланд. Таиланд это то место куда бы я поехал. тайланд - мечты сбываются!");
@@ -31,11 +31,47 @@ public class Grep {
         System.out.println("Есть совпадение?: " + matcher.find());
     }
 
-    private static void displayByWord(String fileName)  {
+    private static void displayByRegex(String fileName) {
+        Pattern pattern;
+        Matcher matcher;
+        StringBuilder stringBuilder = new StringBuilder();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите регулярное выражение по которому будем осуществлять поиск: ");
+        String inpStr = scanner.next();
+
+        if (inpStr != null) {
+            pattern = Pattern.compile(inpStr);
+            Scanner file = null;
+            try {
+                file = new Scanner(new FileReader(fileName));
+            } catch (FileNotFoundException e) {
+                System.err.println("Не удалось найти файл");
+            }
+            if (file != null) {
+                System.out.println("Всё, что нам удалось найти по запросу " + inpStr + ":");
+                while (file.hasNextLine()) {
+                    String s = file.nextLine();
+                    matcher = pattern.matcher(s);
+                    if (matcher.find()) {
+                        stringBuilder.append(s).append("\n");
+                    }
+                }
+            }
+        }
+
+        if (stringBuilder.length() != 0) {
+            System.out.println(stringBuilder.toString());
+        } else {
+            System.out.println("К сожаление в тексте не встречалось слов:" + inpStr);
+        }
+
+    }
+
+    private static void displayByWord(String fileName) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите слово по которому будем выполнять поиск строк: ");
         String inpStr = scanner.next();
-        if (inpStr != null){
+        if (inpStr != null) {
             Scanner in = null;
             try {
                 in = new Scanner(new FileReader(fileName));
@@ -44,7 +80,7 @@ public class Grep {
             }
             if (in != null) {
                 System.out.println("Всё, что нам удалось найти по запросу " + inpStr + ":");
-                while (in.hasNextLine()){
+                while (in.hasNextLine()) {
                     String s = in.nextLine();
                     if (s.toLowerCase().contains(inpStr.toLowerCase())) {
                         System.out.println(s);
@@ -68,12 +104,12 @@ public class Grep {
             System.err.println("Не удалось найти файл");
         }
 
-        if (in != null){
+        if (in != null) {
             System.out.println("Все что нашлось по запросу - " + inpStr + ": ");
-            while (in.hasNextLine()){
+            while (in.hasNextLine()) {
                 String s = in.nextLine();
-                for (String searchWord: rightWords){
-                    if (s.toLowerCase().contains(searchWord.toLowerCase())){
+                for (String searchWord : rightWords) {
+                    if (s.toLowerCase().contains(searchWord.toLowerCase())) {
                         stringBuilder.append(s).append("\n");
                         break;
                     }
@@ -81,9 +117,9 @@ public class Grep {
             }
         }
 
-        if (stringBuilder.length() != 0){
+        if (stringBuilder.length() != 0) {
             System.out.println(stringBuilder.toString());
-        }else{
+        } else {
             System.out.println("К сожаление в тексте не встречалось слов:" + inpStr);
         }
     }
