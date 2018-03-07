@@ -8,6 +8,26 @@ public class Array1 {
     public static void main(String[] args) {
         int[] a = {12, 2, 3, 4, 5, 6, 7, 8};
         System.out.println(Arrays.toString(new int[8]));
+
+        Array1 a1 = new Array1();
+
+    }
+
+    public int[] plusTwo(int[] a, int[] b) {
+        int[] result = new int[a.length + b.length];
+        System.arraycopy(a, 0, result, 0, a.length);
+        System.arraycopy(b, 0, result, a.length, b.length);
+        return result;
+    }
+
+
+    public int[] makeMiddle(int[] nums) {
+        return new int[]{nums[nums.length/2 - 1],nums[nums.length/2]};
+    }
+
+
+    public int[] biggerTwo(int[] a, int[] b) {
+        return a[0] + a[1] < b[0] + b[1] ? b : a;
     }
 
     public int start1(int[] a, int[] b) {
