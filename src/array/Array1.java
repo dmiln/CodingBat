@@ -13,6 +13,64 @@ public class Array1 {
 
     }
 
+    public boolean unlucky1(int[] nums) {
+        if (nums.length > 1) {
+            if (nums[0] == 1) {
+                if (nums[1] == 3)
+                    return true;
+            }
+            if (nums.length > 2) {
+                if (nums[1] == 1) {
+                    if (nums[2] == 3)
+                        return true;
+                }
+                if (nums[nums.length - 2] == 1) {
+                    return nums[nums.length - 1] == 3;
+                }
+            }
+        }
+        return false;
+    }
+
+
+    public int[] frontPiece(int[] nums) {
+        if (nums.length > 1) {
+            return new int[]{nums[0], nums[1]};
+        } else {
+            return nums;
+        }
+    }
+
+
+    public int maxTriple(int[] nums) {
+        return Math.max(Math.max(nums[0], nums[nums.length - 1]), nums[nums.length / 2]);
+    }
+
+
+    public int maxValue(int[] nums) {
+        int max = 0;
+        for (int i : nums) {
+            max = Math.max(max, i);
+        }
+        return max;
+    }
+
+    public int[] midThree(int[] nums) {
+        int d = nums.length / 2;
+        return new int[]{nums[d - 1], nums[d], nums[d + 1]};
+    }
+
+
+    public int[] swapEnds(int[] nums) {
+        if (nums.length > 1) {
+            int tmp = nums[0];
+            nums[0] = nums[nums.length - 1];
+            nums[nums.length - 1] = tmp;
+        }
+        return nums;
+    }
+
+
     public int[] plusTwo(int[] a, int[] b) {
         int[] result = new int[a.length + b.length];
         System.arraycopy(a, 0, result, 0, a.length);
@@ -22,7 +80,7 @@ public class Array1 {
 
 
     public int[] makeMiddle(int[] nums) {
-        return new int[]{nums[nums.length/2 - 1],nums[nums.length/2]};
+        return new int[]{nums[nums.length / 2 - 1], nums[nums.length / 2]};
     }
 
 
@@ -46,9 +104,9 @@ public class Array1 {
     }
 
 
-    public int[] fix23(int[] nums){
-        for (int i = 0; i < nums.length - 1; i++){
-            if (nums[i] == 2 && nums[i + 1] == 3){
+    public int[] fix23(int[] nums) {
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] == 2 && nums[i + 1] == 3) {
                 nums[i + 1] = 0;
             }
         }
@@ -69,8 +127,8 @@ public class Array1 {
 
 
     public boolean no23(int[] nums) {
-        for (int num: nums){
-            if (num == 2 || num ==3) {
+        for (int num : nums) {
+            if (num == 2 || num == 3) {
                 return false;
             }
         }
