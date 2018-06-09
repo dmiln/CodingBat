@@ -1,11 +1,10 @@
 package string;
 
 public class String3 {
-    public static void main(String[] args) {
-        System.out.println(withoutString("xxx", "xx"));
 
-    }
-
+    /**
+     * Считает сколько в строке слов заканчивающихся на Y или Z
+     */
     private static int countYZ(String str) {
         int count = 0;
         for (int i = 0; i < str.length(); i++){
@@ -22,6 +21,9 @@ public class String3 {
         return count;
     }
 
+    /**
+     * Удаляет из строки во всех местах, где есть вхождения другую строку
+     */
     private static String withoutString(String base, String remove) {
         for (int i = 0; i < base.length(); i++){
             for (int j = 0; j < remove.length(); j++){
