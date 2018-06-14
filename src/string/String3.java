@@ -2,7 +2,31 @@ package string;
 
 public class String3 {
     public static void main(String[] args) {
-        System.out.println(sumNumbers("7 11"));
+        System.out.println(notReplace("This is not isabell is"));
+    }
+
+    /**
+     * Добавить к is - not, если is отдельное слово
+     */
+    private static String notReplace(String str) {
+        StringBuilder sB = new StringBuilder();
+        int k = 0;
+        for (int i = 0; i < str.length(); i++){
+            if (!Character.isLetter(str.charAt(i)) || (i == str.length() - 1)){
+                String prov = str.substring(k, i);
+                if (prov.equals("is")){
+                    sB.append("is not").append(str.charAt(i));
+                    k = i + 1;
+                }else if(i == str.length() - 1 && str.substring(k, i + 1).equals("is")){
+                    sB.append("is not");
+                }else{
+                    String s = str.substring(k, i + 1);
+                    sB.append(s);
+                    k = i + 1;
+                }
+            }
+        }
+        return sB.toString();
     }
 
     /**
@@ -10,17 +34,17 @@ public class String3 {
      */
     private static int sumNumbers(String str) {
         int result = 0;
-        for (int i = 0; i < str.length(); i++){
-            StringBuffer sB = new StringBuffer();
-            if (!Character.isDigit(str.charAt(i))){
+        for (int i = 0; i < str.length(); i++) {
+            StringBuilder sB = new StringBuilder();
+            if (!Character.isDigit(str.charAt(i))) {
                 continue;
             }
             sB.append(str.charAt(i));
-            for (int j = i + 1; j < str.length(); j++){
+            for (int j = i + 1; j < str.length(); j++) {
                 i = j;
-                if (Character.isDigit(str.charAt(j))){
+                if (Character.isDigit(str.charAt(j))) {
                     sB.append(str.charAt(j));
-                }else{
+                } else {
                     break;
                 }
             }
@@ -34,16 +58,16 @@ public class String3 {
      */
     private static int maxBlock(String str) {
         int result = 0;
-        for (int i = 0; i < str.length(); i++){
+        for (int i = 0; i < str.length(); i++) {
             int count = 1;
-            for (int j = i + 1; j < str.length(); j++){
-                if (str.charAt(i) == str.charAt(j)){
+            for (int j = i + 1; j < str.length(); j++) {
+                if (str.charAt(i) == str.charAt(j)) {
                     count++;
-                }else{
+                } else {
                     break;
                 }
             }
-            if (count > result){
+            if (count > result) {
                 result = count;
             }
         }
